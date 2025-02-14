@@ -81,6 +81,7 @@ CREATE TABLE Lid (
     CONSTRAINT PK_Lid_Id PRIMARY KEY (Id)
 ) ENGINE=InnoDB;
 
+
 -- ====================================================================
 -- Tabel: Les
 -- ====================================================================
@@ -98,6 +99,8 @@ CREATE TABLE Les (
     DatumGewijzigd     DATETIME(6)     NOT NULL,
     CONSTRAINT PK_Les_Id PRIMARY KEY (Id)
 ) ENGINE=InnoDB;
+
+
 
 -- ====================================================================
 -- Tabel: Reservering

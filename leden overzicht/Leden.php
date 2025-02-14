@@ -74,7 +74,7 @@
     <title>Leden</title>
 </head>
 <body>
-<nav class="navbar navbar-expand-lg navbar-custom sticky">
+    <nav class="navbar navbar-expand-lg navbar-custom sticky">
         <div class="container-fluid">
             <ul>
                 <li>
@@ -95,60 +95,63 @@
         </div>
     </nav>
 
-    <div class="row mb-1 ">
-        <div class="col-2"></div>
-        <div class="col-8 title"><h3>Overzicht van de leden</h3></div>
-        <div class="col-2"></div>
-      </div> 
-
-
-      <div class="row mb-1 ">
-        <div class="col-2"></div>
-        <div class="col-8 title">
-        <div class="input-group mb-3">
-            <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for names.." class="form-control">
-            <select id="myInputType" class="btn btn-outline-secondary dropdown-toggle       ">
-                <option value="0" selected>Voornaam</option>
-                <option value="2">Achternaam</option>
-            </select>
+    <div class="container">
+        <div class="row mb-1 ">
+            <div class="col-2"></div>
+            <div class="col-8 title"><h3>Overzicht van de leden</h3></div>
+            <div class="col-2"></div>
         </div>
+    </div> 
+
+    <div class="container">
+        <div class="row mb-1 ">
+            <div class="col-2"></div>
+            <div class="col-8 title">
+                <div class="input-group mb-3">
+                    <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for names.." class="form-control">
+                    <select id="myInputType" class="btn btn-outline-secondary dropdown-toggle       ">
+                        <option value="0" selected>Voornaam</option>
+                        <option value="2">Achternaam</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-2"></div>
         </div>
-        <div class="col-2"></div>
-      </div> 
+    </div> 
 
       
 
-
-    <div class="row">
-        <div class="col-2"></div>
-        <div class="col-8">
-          <table class="table table-hover" id="table-leden">
-              <thead>
-                  <th>Voornaam</th>
-                  <th>Tussenvoegsel</th>
-                  <th>Achternaam</th>
-                  <th>Relatienummer</th>
-                  <th>Mobiel</th>
-                  <th>Email</th>
-              </thead>
-              <tbody>
-                  <?php foreach($result as $LedenInfo) : ?>
-                        <tr>
-                          <td><?= $LedenInfo->Voornaam ?></td>
-                          <td><?= $LedenInfo->Tussenvoegsel ?></td>
-                          <td><?= $LedenInfo->Achternaam ?></td>
-                          <td><?= $LedenInfo->Relatienummer ?></td>
-                          <td><?= $LedenInfo->Mobiel ?></td>
-                          <td><?= $LedenInfo->Email ?></td>
-                 
-                        </tr>
-                  <?php endforeach ?>
-              </tbody>
-          </table>
-        </div>        
-        <div class="col-2"></div>
-      </div>
-
+    <div class="container">
+        <div class="row">
+            <div class="col-2"></div>
+            <div class="col-8">
+                <table class="table table-hover" id="table-leden">
+                    <thead>
+                        <th>Voornaam</th>
+                        <th>Tussenvoegsel</th>
+                        <th>Achternaam</th>
+                        <th>Relatienummer</th>
+                        <th>Mobiel</th>
+                        <th>Email</th>
+                    </thead>
+                    <tbody>
+                        <?php foreach($result as $LedenInfo) : ?>
+                            <tr>
+                              <td><?= $LedenInfo->Voornaam ?></td>
+                              <td><?= $LedenInfo->Tussenvoegsel ?></td>
+                              <td><?= $LedenInfo->Achternaam ?></td>
+                              <td><?= $LedenInfo->Relatienummer ?></td>
+                              <td><?= $LedenInfo->Mobiel ?></td>
+                              <td><?= $LedenInfo->Email ?></td>
+                            </tr>
+                        <?php endforeach ?>
+                    </tbody>
+                </table>
+            </div>        
+            <div class="col-2"></div>
+        </div>
+    </div>
+    
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
         crossorigin="anonymous"></script>

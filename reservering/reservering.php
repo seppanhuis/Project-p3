@@ -1,62 +1,64 @@
+
 <?php
     /**
      * We sluiten het configuratiebestand in bij de pagina
      * index.php
      */
-    include('DB/config.php');
- 
+    include('../DB/config.php');
+
     $dsn = "mysql:host=$dbHost;
             dbname=$dbName;
             charset=UTF8";
- 
+
     /**
      * Maak een nieuw PDO-object aan zodat we een verbinding
      * kunnen maken met de mysql-server
      */
     $pdo = new PDO($dsn, $dbUser, $dbPass);
- 
+
     /**
-     * Dit is de zoekvraag voor de database zodat we
+     * Dit is de zoekvraag voor de database zodat we 
      * alle achtbanen van Europa selecteren
      */
-    $sql = "SELECT  LES.Id
-                   ,LES.Naam
-                   ,LES.Datum
-                   ,LES.Tijd
-                   ,LES.MinAantalPersonen
-                   ,LES.MaxAantalPersonen
-                   ,LES.Beschikbaarheid
-   
-            FROM Les AS LES";
-   
- 
+    $sql = "SELECT  RS.Id
+                   ,RS.Voornaam
+                   ,RS.Tussenvoegsel
+                   ,RS.Achternaam
+                   ,RS.Nummer
+                   ,RS.Datum
+                   ,RS.Tijd
+                   ,RS.Reserveringstatus
+    
+            FROM Reservering AS RS";
+    
+
     /**
      * We moeten de sql-query voorbereiden voor de PDO class
      * door middel van de method prepare
      */
     $statement = $pdo->prepare($sql);
- 
+
     /**
      * We voeren de geprepareerde sql-query uit
      */
     $statement->execute();
- 
+
     /**
      * We krijgen de records binnen als een indexed-array
      * met daarin objecten
      */
     $result = $statement->fetchAll(PDO::FETCH_OBJ);
- 
- 
- 
- 
- 
- 
-   
- 
- 
+
+
+
+
+
+
+    
+
+
 ?>
- 
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -73,7 +75,7 @@
     <title>Leden</title>
 </head>
 <body>
-<nav class="navbar navbar-expand-lg navbar-custom sticky">
+    <nav class="navbar navbar-expand-lg navbar-custom sticky">
         <div class="container-fluid">
             <ul>
                 <li>
@@ -85,56 +87,57 @@
                     <a class="nav-link" href="../index.html">Homepage</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link active" href="../lessen.php">Lessen</a>
+                    <a class="nav-link" href="../lessen.php">lessen</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="../dashboard/dashboard.html">Dashboard</a>
+                    <a class="nav-link active" href="../dashboard/dashboard.html">Dashboard</a>
                 </li>
             </ul>
         </div>
     </nav>
- 
-    <div class="row mb-1 ">
-        <div class="col-2"></div>
-        <div class="col-8 title"><h3>Overzicht van de lessen</h3></div>
-        <div class="col-2"></div>
-      </div>
- 
-     
- 
-     
- 
- 
-    <div class="row">
-        <div class="col-2"></div>
-        <div class="col-8">
-          <table class="table table-hover" id="table-lessen">
-              <thead>
-                  <th>Naam</th>
-                  <th>Datum</th>
-                  <th>Tijd</th>
-                  <th>MinAantalPersonen</th>
-                  <th>MaxAantalPersonen</th>
-                  <th>Beschikbaarheid</th>
-              </thead>
-              <tbody>
-                  <?php foreach($result as $LessenInfo) : ?>
-                        <tr>
-                          <td><?= $LessenInfo->Naam ?></td>
-                          <td><?= $LessenInfo->Datum ?></td>
-                          <td><?= $LessenInfo->Tijd ?></td>
-                          <td><?= $LessenInfo->MinAantalPersonen ?></td>
-                          <td><?= $LessenInfo->MaxAantalPersonen ?></td>
-                          <td><?= $LessenInfo->Beschikbaarheid ?></td>
-                 
-                        </tr>
-                  <?php endforeach ?>
-              </tbody>
-          </table>
-        </div>        
-        <div class="col-2"></div>
-      </div>
- 
+
+    <div class="container">
+        <div class="row mb-1 ">
+            <div class="col-2"></div>
+            <div class="col-8 title"><h3>Overzicht van de reserveringen</h3></div>
+            <div class="col-2"></div>
+        </div>
+    </div> 
+
+
+    <div class="container">
+        <div class="row">
+            <div class="col-2"></div>
+            <div class="col-8">
+                <table class="table table-hover" id="table-reservering">
+                    <thead>
+                        <th>Voornaam</th>
+                        <th>Tussenvoegsel</th>
+                        <th>Achternaam</th>
+                        <th>Nummer</th>
+                        <th>Datum</th>
+                        <th>Tijd</th>
+                        <th>Reserveringstatus</th>
+                    </thead>
+                    <tbody>
+                        <?php foreach($result as $ReserveringInfo) : ?>
+                            <tr>
+                              <td><?= $ReserveringInfo->Voornaam ?></td>
+                              <td><?= $ReserveringInfo->Tussenvoegsel ?></td>
+                              <td><?= $ReserveringInfo->Achternaam ?></td>
+                              <td><?= $ReserveringInfo->Nummer ?></td>
+                              <td><?= $ReserveringInfo->Datum ?></td>
+                              <td><?= $ReserveringInfo->Tijd ?></td>
+                              <td><?= $ReserveringInfo->Reserveringstatus ?></td>
+                            </tr>
+                        <?php endforeach ?>
+                    </tbody>
+                </table>
+            </div>        
+            <div class="col-2"></div>
+        </div>
+    </div>
+    
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
         crossorigin="anonymous"></script>

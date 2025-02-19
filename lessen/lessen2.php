@@ -3,7 +3,7 @@
      * We sluiten het configuratiebestand in bij de pagina
      * index.php
      */
-    include('DB/config.php');
+    include('../DB/config.php');
  
     $dsn = "mysql:host=$dbHost;
             dbname=$dbName;
@@ -85,10 +85,10 @@
                     <a class="nav-link" href="../index.html">Homepage</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link active" href="../lessen.php">Lessen</a>
+                    <a class="nav-link" href="../lessen.php">Lessen</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="../dashboard/dashboard.html">Dashboard</a>
+                    <a class="nav-link active" href="../dashboard/dashboard.html">Dashboard</a>
                 </li>
             </ul>
         </div>

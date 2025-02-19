@@ -3,7 +3,7 @@
      * We sluiten het configuratiebestand in bij de pagina
      * index.php
      */
-    include('DB/config.php');
+    include('../DB/config.php');
  
     $dsn = "mysql:host=$dbHost;
             dbname=$dbName;
@@ -19,15 +19,15 @@
      * Dit is de zoekvraag voor de database zodat we
      * alle achtbanen van Europa selecteren
      */
-    $sql = "SELECT  LES.Id
-                   ,LES.Naam
-                   ,LES.Datum
-                   ,LES.Tijd
-                   ,LES.MinAantalPersonen
-                   ,LES.MaxAantalPersonen
-                   ,LES.Beschikbaarheid
+    $sql = "SELECT  MEDEWERKER.Id
+                   ,MEDEWERKER.Voornaam
+                   ,MEDEWERKER.Tussenvoegsel
+                   ,MEDEWERKER.Achternaam
+                   ,MEDEWERKER.Nummer
+                   ,MEDEWERKER.Medewerkersoort
+                   
    
-            FROM Les AS LES";
+            FROM Medewerker AS MEDEWERKER";
    
  
     /**
@@ -70,7 +70,7 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Farro:wght@300;400;500;700&family=Luckiest+Guy&family=Passion+One:wght@400;700;900&display=swap"
         rel="stylesheet">
-    <title>Leden</title>
+    <title>Medewerker</title>
 </head>
 <body>
 <nav class="navbar navbar-expand-lg navbar-custom sticky">
@@ -85,10 +85,10 @@
                     <a class="nav-link" href="../index.html">Homepage</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link active" href="../lessen.php">Lessen</a>
+                    <a class="nav-link" href="../lessen.php">lessen</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="../dashboard/dashboard.html">Dashboard</a>
+                    <a class="nav-link active" href= "../dashboard/dashboard.html">Dashboard</a>
                 </li>
             </ul>
         </div>
@@ -96,7 +96,7 @@
  
     <div class="row mb-1 ">
         <div class="col-2"></div>
-        <div class="col-8 title"><h3>Overzicht van de lessen</h3></div>
+        <div class="col-8 title"><h3>Overzicht van de Medewerker</h3></div>
         <div class="col-2"></div>
       </div>
  
@@ -110,22 +110,20 @@
         <div class="col-8">
           <table class="table table-hover" id="table-lessen">
               <thead>
-                  <th>Naam</th>
-                  <th>Datum</th>
-                  <th>Tijd</th>
-                  <th>MinAantalPersonen</th>
-                  <th>MaxAantalPersonen</th>
-                  <th>Beschikbaarheid</th>
+                  <th>Voornaam</th>
+                  <th>Tussenvoegsel</th>
+                  <th>Achternaam</th>
+                  <th>Nummer</th>
+                  <th>Medewerkersoort</th>
               </thead>
               <tbody>
-                  <?php foreach($result as $LessenInfo) : ?>
+                  <?php foreach($result as $MedewerkerInfo) : ?>
                         <tr>
-                          <td><?= $LessenInfo->Naam ?></td>
-                          <td><?= $LessenInfo->Datum ?></td>
-                          <td><?= $LessenInfo->Tijd ?></td>
-                          <td><?= $LessenInfo->MinAantalPersonen ?></td>
-                          <td><?= $LessenInfo->MaxAantalPersonen ?></td>
-                          <td><?= $LessenInfo->Beschikbaarheid ?></td>
+                          <td><?= $MedewerkerInfo->Voornaam ?></td>
+                          <td><?= $MedewerkerInfo->Tussenvoegsel ?></td>
+                          <td><?= $MedewerkerInfo->Achternaam ?></td>
+                          <td><?= $MedewerkerInfo->Nummer ?></td>
+                          <td><?= $MedewerkerInfo->Medewerkersoort ?></td>
                  
                         </tr>
                   <?php endforeach ?>

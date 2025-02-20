@@ -88,7 +88,7 @@
                     <a class="nav-link active" href="../lessen.php">Lessen</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="../dashboard/dashboard.html">Dashboard</a>
+                    <a class="nav-link " href="../dashboard/dashboard.html">Dashboard</a>
                 </li>
             </ul>
         </div>
@@ -102,13 +102,29 @@
  
      
  
+      <div class="container">
+        <div class="row mb-1 ">
+            <div class="col-2"></div>
+            <div class="col-8 title">
+                <div class="input-group mb-3">
+                    <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for names.." class="form-control">
+                    <select id="myInputType" class="btn btn-outline-secondary dropdown-toggle       ">
+                        <option value="0" selected>Voornaam</option>
+                        <option value="2">Datum</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-2"></div>
+        </div>
+    </div>
+ 
      
  
  
     <div class="row">
         <div class="col-2"></div>
         <div class="col-8">
-          <table class="table table-hover" id="table-lessen">
+          <table class="table table-hover" id="table-leden">
               <thead>
                   <th>Naam</th>
                   <th>Datum</th>
@@ -138,6 +154,6 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
         crossorigin="anonymous"></script>
-    <script src="script.js"></script>
+    <script src="leden/script.js"></script>
 </body>
 </html>

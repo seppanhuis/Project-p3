@@ -3,7 +3,7 @@
      * We sluiten het configuratiebestand in bij de pagina
      * index.php
      */
-    include('DB/config.php');
+    include('../DB/config.php');
  
     $dsn = "mysql:host=$dbHost;
             dbname=$dbName;
@@ -85,7 +85,7 @@
                     <a class="nav-link" href="../index.html">Homepage</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link active" href="../lessen.php">Lessen</a>
+                    <a class="nav-link active" href="../gebruikerslessen/lessen.php">Lessen</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link " href="../dashboard/dashboard.html">Dashboard</a>
@@ -154,6 +154,6 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
         crossorigin="anonymous"></script>
-    <script src="leden/script.js"></script>
+    <script src="../leden/script.js"></script>
 </body>
 </html>

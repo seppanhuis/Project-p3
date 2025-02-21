@@ -87,7 +87,7 @@
                     <a class="nav-link" href="../index.html">Homepage</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="../lessen.php">lessen</a>
+                    <a class="nav-link" href="../gebruikerslessen/lessen.php">lessen</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link active" href="../dashboard/dashboard.html">Dashboard</a>

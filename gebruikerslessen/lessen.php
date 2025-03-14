@@ -25,6 +25,7 @@
                    ,LES.Tijd
                    ,LES.MinAantalPersonen
                    ,LES.MaxAantalPersonen
+                   ,LES.lesPrijs
                    ,LES.Beschikbaarheid
    
             FROM Les AS LES";
@@ -107,10 +108,10 @@
             <div class="col-2"></div>
             <div class="col-8 title">
                 <div class="input-group mb-3">
-                    <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for names.." class="form-control">
-                    <select id="myInputType" class="btn btn-outline-secondary dropdown-toggle       ">
-                        <option value="0" selected>Voornaam</option>
-                        <option value="2">Datum</option>
+                    <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Maximale prijs" class="form-control">
+                    <select id="myInputType" class="btn btn-outline-secondary dropdown-toggle">
+                        <option value="0" selected>Oplopend</option>
+                        <option value="2">Aflopend</option>
                     </select>
                 </div>
             </div>
@@ -131,6 +132,7 @@
                   <th>Tijd</th>
                   <th>MinAantalPersonen</th>
                   <th>MaxAantalPersonen</th>
+                  <th>lesPrijs</th>
                   <th>Beschikbaarheid</th>
               </thead>
               <tbody>
@@ -141,6 +143,7 @@
                           <td><?= $LessenInfo->Tijd ?></td>
                           <td><?= $LessenInfo->MinAantalPersonen ?></td>
                           <td><?= $LessenInfo->MaxAantalPersonen ?></td>
+                          <td><?= $LessenInfo->lesPrijs ?></td>
                           <td><?= $LessenInfo->Beschikbaarheid ?></td>
                  
                         </tr>
@@ -153,7 +156,7 @@
  
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
-        crossorigin="anonymous"></script>
-    <script src="../leden/script.js"></script>
+        crossorigin="anonymous"></script>       
+    <script src="lessen.js"></script>
 </body>
 </html>

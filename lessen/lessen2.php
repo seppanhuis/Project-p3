@@ -25,6 +25,7 @@
                    ,LES.Tijd
                    ,LES.MinAantalPersonen
                    ,LES.MaxAantalPersonen
+                   ,LES.lesPrijs
                    ,LES.Beschikbaarheid
    
             FROM Les AS LES";
@@ -115,6 +116,7 @@
                   <th>Tijd</th>
                   <th>MinAantalPersonen</th>
                   <th>MaxAantalPersonen</th>
+                  <th>lesPrijs</th>
                   <th>Beschikbaarheid</th>
               </thead>
               <tbody>
@@ -125,6 +127,7 @@
                           <td><?= $LessenInfo->Tijd ?></td>
                           <td><?= $LessenInfo->MinAantalPersonen ?></td>
                           <td><?= $LessenInfo->MaxAantalPersonen ?></td>
+                          <td><?= $LessenInfo->lesPrijs ?></td>
                           <td><?= $LessenInfo->Beschikbaarheid ?></td>
                  
                         </tr>

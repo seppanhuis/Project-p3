@@ -71,6 +71,7 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Farro:wght@300;400;500;700&family=Luckiest+Guy&family=Passion+One:wght@400;700;900&display=swap"
         rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <title>Leden</title>
 </head>
 <body>
@@ -102,6 +103,20 @@
             <div class="col-2"></div>
         </div>
     </div> 
+
+    <div class="container">
+        <div class="row mb-3">
+            <div class="col-2"></div>
+            <div class="col-8">
+              <h5>Nieuw lid toevoegen
+                  <a href="create.php">
+                    <i class="bi bi-plus-square-fill text-danger"></i>
+                  </a>
+              </h5>
+            </div>
+            <div class="col-2"></div>
+        </div>
+    </div>
 
     <div class="container">
         <div class="row mb-1 ">

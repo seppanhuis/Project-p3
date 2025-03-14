@@ -108,8 +108,8 @@
             <div class="col-2"></div>
             <div class="col-8 title">
                 <div class="input-group mb-3">
-                    <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Maximale prijs" class="form-control">
-                    <select id="myInputType" class="btn btn-outline-secondary dropdown-toggle">
+                    <input type="text" id="Filter-1" onkeyup="Filter()" placeholder="Maximale prijs" class="form-control">
+                    <select id="Filter-2" class="btn btn-outline-secondary dropdown-toggle">
                         <option value="0" selected>Oplopend</option>
                         <option value="2">Aflopend</option>
                     </select>

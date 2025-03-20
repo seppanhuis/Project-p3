@@ -25,7 +25,6 @@
                    ,LES.Tijd
                    ,LES.MinAantalPersonen
                    ,LES.MaxAantalPersonen
-                   ,LES.lesPrijs
                    ,LES.Beschikbaarheid
    
             FROM Les AS LES";
@@ -71,7 +70,8 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Farro:wght@300;400;500;700&family=Luckiest+Guy&family=Passion+One:wght@400;700;900&display=swap"
         rel="stylesheet">
-    <title>Leden</title>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <title>Lessen</title>
 </head>
 <body>
 <nav class="navbar navbar-expand-lg navbar-custom sticky">
@@ -86,7 +86,7 @@
                     <a class="nav-link" href="../index.html">Homepage</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="../gebruikerslessen/lessen.php">Lessen</a>
+                    <a class="nav-link" href="../lessen.php">Lessen</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link active" href="../dashboard/dashboard.html">Dashboard</a>
@@ -103,6 +103,19 @@
  
      
  
+    
+        <div class="row mb-3">
+            <div class="col-2"></div>
+            <div class="col-8">
+              <h5>Nieuw les toevoegen
+                  <a href="create.php">
+                    <i class="bi bi-plus-square-fill text-danger"></i>
+                  </a>
+              </h5>
+            </div>
+            <div class="col-2"></div>
+        </div>
+    
      
  
  
@@ -116,7 +129,6 @@
                   <th>Tijd</th>
                   <th>MinAantalPersonen</th>
                   <th>MaxAantalPersonen</th>
-                  <th>lesPrijs</th>
                   <th>Beschikbaarheid</th>
               </thead>
               <tbody>
@@ -127,7 +139,6 @@
                           <td><?= $LessenInfo->Tijd ?></td>
                           <td><?= $LessenInfo->MinAantalPersonen ?></td>
                           <td><?= $LessenInfo->MaxAantalPersonen ?></td>
-                          <td><?= $LessenInfo->lesPrijs ?></td>
                           <td><?= $LessenInfo->Beschikbaarheid ?></td>
                  
                         </tr>

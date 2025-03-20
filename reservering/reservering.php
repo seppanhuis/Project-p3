@@ -1,25 +1,12 @@
-
 <?php
-    /**
-     * We sluiten het configuratiebestand in bij de pagina
-     * index.php
-     */
     include('../DB/config.php');
 
     $dsn = "mysql:host=$dbHost;
             dbname=$dbName;
             charset=UTF8";
 
-    /**
-     * Maak een nieuw PDO-object aan zodat we een verbinding
-     * kunnen maken met de mysql-server
-     */
     $pdo = new PDO($dsn, $dbUser, $dbPass);
 
-    /**
-     * Dit is de zoekvraag voor de database zodat we 
-     * alle achtbanen van Europa selecteren
-     */
     $sql = "SELECT  RS.Id
                    ,RS.Voornaam
                    ,RS.Tussenvoegsel
@@ -30,33 +17,10 @@
                    ,RS.Reserveringstatus
     
             FROM Reservering AS RS";
-    
 
-    /**
-     * We moeten de sql-query voorbereiden voor de PDO class
-     * door middel van de method prepare
-     */
     $statement = $pdo->prepare($sql);
-
-    /**
-     * We voeren de geprepareerde sql-query uit
-     */
     $statement->execute();
-
-    /**
-     * We krijgen de records binnen als een indexed-array
-     * met daarin objecten
-     */
     $result = $statement->fetchAll(PDO::FETCH_OBJ);
-
-
-
-
-
-
-    
-
-
 ?>
 
 <!DOCTYPE html>
@@ -97,13 +61,17 @@
     </nav>
 
     <div class="container">
-        <div class="row mb-1 ">
+        <div class="row mb-1">
             <div class="col-2"></div>
             <div class="col-8 title"><h3>Overzicht van de reserveringen</h3></div>
             <div class="col-2"></div>
         </div>
-    </div> 
+    </div>
 
+    <!-- Knop voor toevoegen van reserveringen -->
+    <div class="container text-center my-3">
+        <a href="toevoegen.php" class="btn btn-primary">Reservering toevoegen</a>
+    </div>
 
     <div class="container">
         <div class="row">

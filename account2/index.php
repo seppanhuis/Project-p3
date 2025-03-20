@@ -3,7 +3,7 @@ session_start(); // Start the session to store session data
 
 if (isset($_POST['submit'])) {
     // Include the configuration file
-    include('.../DB/config.php');
+    include('config/config.php');
 
     // Create PDO object to connect to the database
     $dsn = "mysql:host=$dbHost;dbname=$dbName;charset=UTF8";
@@ -17,7 +17,7 @@ if (isset($_POST['submit'])) {
     $tussenvoegsel = $_POST['Tussenvoegsel'] ?: NULL; // Handle NULL for middle name
     $achternaam = $_POST['Achternaam'];
     $email = $_POST['Email'];
-    $wachtwoord = password_hash($_POST['Wachtwoord'], PASSWORD_DEFAULT); // Hash password
+    $wachtwoord = $_POST['Wachtwoord']; // Hash password
 
     // Combine the full name
     $fullName = $voornaam;
@@ -121,14 +121,14 @@ if (isset($_POST['submit'])) {
         <div class="row">
             <div class="col-3"></div>
             <div class="col-6">
-                <form action="./dasboard.php" method="POST">
+                <form action="index.php" method="POST">
                     <div class="mb-3">
                         <label for="Voornaam" class="form-label">Voornaam</label>
                         <input name="Voornaam" type="text" class="form-control" id="Voornaam" placeholder="Voornaam" value="<?= $_POST['Voornaam'] ?? ''; ?> " required>
                     </div>
                     <div class="mb-3">
                         <label for="naamLand" class="form-label">Tussenvoegsel</label>
-                        <input name="Tussenvoegsel" type="text" class="form-control" id="naamLand" placeholder="Tussenvoegsel" value="<?= $_POST['Tussenvoegsel'] ?? ''; ?>" required>
+                        <input name="Tussenvoegsel" type="text" class="form-control" id="naamLand" placeholder="Tussenvoegsel" value="<?= $_POST['Tussenvoegsel'] ?? ''; ?>" >
                     </div>
 
                     <div class="mb-3">

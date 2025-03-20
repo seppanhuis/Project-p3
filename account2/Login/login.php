@@ -3,7 +3,7 @@ session_start(); // Start the session
 
 if (isset($_POST['submit'])) {
     // Include the configuration file
-    include('../../DB/config.php');
+    include('../config/config.php');
 
     // Create PDO object to connect to the database
     $dsn = "mysql:host=$dbHost;dbname=$dbName;charset=UTF8";
@@ -79,8 +79,8 @@ if (isset($_POST['submit'])) {
                     </div>
                     <div class="d-grid gap-2">
                         <button name="submit" type="submit" class="btn btn-primary btn-lg">Login</button>
+                        <h5>Heeft u nog geen account? <a href="../index.php">Registreer hier</a></h5>
                     </div>
-                    <h5 class="center-text"> dont have an account yet <a href="../create.php">Create account</a></h5>
                 </form>
             </div>
             <div class="col-3"></div>

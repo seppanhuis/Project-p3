@@ -1,7 +1,14 @@
-
 <?php
 // Start the session to check if the user is logged in
 session_start();
+
+// Check if the user is logged in
+if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true) {
+    // If not logged in, redirect to the login page
+    header("Location: Login/login.php");
+    exit();
+}
+ 
 ?>
 
 <!DOCTYPE html>
@@ -24,7 +31,7 @@ session_start();
             </ul>
             <ul class="navbar-nav">
                 <li class="nav-item">
-                    <a class="nav-link" href="../index.php">Homepage</a>
+                    <a class="nav-link" href="index.php">Homepage</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="lessen.php">Lessen</a>
@@ -35,9 +42,9 @@ session_start();
                 <!-- Display Log In/Log Out based on session -->
                 <li class="nav-item">
                     <?php if (isset($_SESSION['logged_in']) && $_SESSION['logged_in'] === true): ?>
-                        <a class="nav-link" href="inlog/loguit.php">Log Out</a>
+                        <a class="nav-link" href="LogUit/index.php">Log Out</a>
                     <?php else: ?>
-                        <a class="nav-link" href="inlog/login.php">Log In</a>
+                        <a class="nav-link" href="Login/login.php">Log In</a>
                     <?php endif; ?>
                 </li>
             </ul>
@@ -53,7 +60,7 @@ session_start();
                 <?php if (isset($_SESSION['logged_in']) && $_SESSION['logged_in'] === true): ?>
                     <p>Hello, <?= isset($_SESSION['full_name']) ? htmlspecialchars($_SESSION['full_name']) : 'Guest'; ?>! You are logged in.</p>
                 <?php else: ?>
-                    <p>You are not logged in. Some features might not be available. Please log in to access all features.</p>
+                    <p>You are not logged in. Some features might not be available. Please <a href="login.php">log in</a> to access all features.</p>
                 <?php endif; ?>
             </div>
         </div>

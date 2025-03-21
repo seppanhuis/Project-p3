@@ -105,18 +105,11 @@ if (isset($_POST['submit'])) {
         <div class="row" style="display:<?= $display ?? 'none'; ?>">
             <div class="col-3"></div>
             <div class="col-6">
-                <div class="alert alert-success text-center" role="alert">
-                    De achtbaan is opgeslagen, u wordt doorgestuurd naar de homepagina
-                </div>
             </div>
             <div class="col-3"></div>
         </div>
 
-        <div class="row mb-1">
-            <div class="col-3"></div>
-            <div class="col-6 text-primary"><h3>Voer een nieuwe achtbaan in:</h3></div>
-            <div class="col-3"></div>
-        </div>
+        
 
         <div class="row">
             <div class="col-3"></div>

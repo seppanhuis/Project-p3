@@ -16,6 +16,7 @@
      */
     $pdo = new PDO($dsn, $dbUser, $dbPass);
 
+    $filter = isset($_GET['filter']) && $_GET['filter'] == 'new';
     /**
      * Dit is de zoekvraag voor de database zodat we 
      * alle achtbanen van Europa selecteren
@@ -29,6 +30,10 @@
                    ,LID.Email
     
             FROM Lid AS LID";
+            if ($filter) {
+                $sql .= " WHERE MONTH(DatumInschrijving) = MONTH(CURRENT_DATE()) 
+                          AND YEAR(DatumInschrijving) = YEAR(CURRENT_DATE())";
+            }
     
 
     /**
@@ -134,38 +139,62 @@
         </div>
     </div> 
 
-      
+    
 
     <div class="container">
-        <div class="row">
-            <div class="col-2"></div>
-            <div class="col-8">
-                <table class="table table-hover" id="table-leden">
-                    <thead>
-                        <th>Voornaam</th>
-                        <th>Tussenvoegsel</th>
-                        <th>Achternaam</th>
-                        <th>Relatienummer</th>
-                        <th>Mobiel</th>
-                        <th>Email</th>
-                    </thead>
-                    <tbody>
-                        <?php foreach($result as $LedenInfo) : ?>
-                            <tr>
-                              <td><?= $LedenInfo->Voornaam ?></td>
-                              <td><?= $LedenInfo->Tussenvoegsel ?></td>
-                              <td><?= $LedenInfo->Achternaam ?></td>
-                              <td><?= $LedenInfo->Relatienummer ?></td>
-                              <td><?= $LedenInfo->Mobiel ?></td>
-                              <td><?= $LedenInfo->Email ?></td>
-                            </tr>
-                        <?php endforeach ?>
-                    </tbody>
-                </table>
-            </div>        
-            <div class="col-2"></div>
-        </div>
-    </div>
+    <h3 id="pageTitle"><?= $filter ? 'Nieuwe leden van deze maand' : 'Overzicht van alle leden' ?></h3> 
+    <button id="toggleFilter" class="btn btn-primary">Toon alleen nieuwe leden</button>
+    <table class="table">
+        
+        <tbody>
+            <?php foreach ($result as $Lid) : ?>
+                <tr>
+                    <td><?= htmlspecialchars($Lid->Voornaam) ?></td>
+                    <td><?= htmlspecialchars($Lid->Tussenvoegsel ?? '', ENT_QUOTES, 'UTF-8') ?></td>
+                    <td><?= htmlspecialchars($Lid->Achternaam) ?></td>
+                    <td><?= htmlspecialchars($Lid->Relatienummer) ?></td>
+                    <td><?= htmlspecialchars($Lid->Mobiel) ?></td>
+                    <td><?= htmlspecialchars($Lid->Email) ?></td>
+                </tr>
+            <?php endforeach ?>
+        </tbody>
+    </table>
+</div>
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+    let filterStatus = localStorage.getItem("filterNewMembers");
+    let toggleButton = document.getElementById("toggleFilter");
+
+    // Zet de juiste URL afhankelijk van de status
+    function updateFilter() {
+        let newUrl = window.location.pathname;
+        if (filterStatus === "true") {
+            newUrl += "?filter=new";
+            toggleButton.innerText = "Toon alle leden";
+            document.getElementById("pageTitle").innerText = "Nieuwe leden van deze maand";
+        } else {
+            toggleButton.innerText = "Toon alleen nieuwe leden";
+            document.getElementById("pageTitle").innerText = "Overzicht van alle leden";
+        }
+        window.location.href = newUrl;
+    }
+
+    // Als de gebruiker al eerder een filter had ingeschakeld, behoud dit dan
+    if (filterStatus === "true" && !window.location.search.includes("filter=new")) {
+        window.location.href = window.location.pathname + "?filter=new";
+    }
+
+    // Toggle-knop klik-event
+    toggleButton.addEventListener("click", function () {
+        filterStatus = filterStatus === "true" ? "false" : "true";
+        localStorage.setItem("filterNewMembers", filterStatus);
+        updateFilter();
+    });
+});
+</script>
+
+
     
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"

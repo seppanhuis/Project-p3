@@ -1,64 +1,66 @@
 document.addEventListener("DOMContentLoaded", function () {
-    document.getElementById("Filter-1").addEventListener("keyup", Filter);
-    document.getElementById("Filter-2").addEventListener("change", SortTable);
-});
+    const priceInput = document.getElementById("Filter-1");
+    const dateInput = document.getElementById("Filter-3");
+    const sortSelect = document.getElementById("Filter-2");
+    const tableBody = document.querySelector("#table-leden tbody");
 
-function Filter() {
-    let maxPrijs = parseFloat(document.getElementById("Filter-1").value);
-    let table = document.getElementById("table-leden");
-    let tbody = table.getElementsByTagName("tbody")[0];
-    let rows = tbody.getElementsByTagName("tr");
-    let zichtbaar = 0;
+    function filterTable() {
+        const maxPrice = parseFloat(priceInput.value) || Infinity;
+        const selectedDate = dateInput.value;
+        const rows = Array.from(tableBody.querySelectorAll("tr"));
 
-    for (let i = 0; i < rows.length; i++) {
-        let prijsCel = rows[i].getElementsByTagName("td")[5]; 
-        if (prijsCel) {
-            let prijs = parseFloat(prijsCel.innerText.replace(',', '.'));
-            if (!isNaN(maxPrijs) && prijs > maxPrijs) {
-                rows[i].style.display = "none";
-            } else {
-                rows[i].style.display = "";
-                zichtbaar++;
+        let visibleCount = 0;
+
+        rows.forEach(row => {
+            const cells = row.getElementsByTagName("td");
+
+            // Verwijder vorige "geen lessen" rij
+            if (row.classList.contains("no-results")) {
+                row.remove();
+                return;
             }
+
+            const price = parseFloat(cells[5].innerText.replace(',', '.')) || 0;
+            const date = cells[1].innerText.trim();
+
+            const priceMatch = price <= maxPrice;
+            const dateMatch = !selectedDate || date === selectedDate;
+
+            if (priceMatch && dateMatch) {
+                row.style.display = "";
+                visibleCount++;
+            } else {
+                row.style.display = "none";
+            }
+        });
+
+        if (visibleCount === 0) {
+            const noResultRow = document.createElement("tr");
+            noResultRow.classList.add("no-results");
+            noResultRow.innerHTML = `
+                <td colspan="7" class="text-center fw-bold text-danger">Geen lessen gevonden.</td>
+            `;
+            tableBody.appendChild(noResultRow);
         }
+
+        sortTable(); // Sorteer enkel zichtbare lessen
     }
 
-    // Verwijder bestaande melding als die er is
-    let geenLessenRij = document.getElementById("geen-lessen");
-    if (geenLessenRij) {
-        geenLessenRij.remove();
+    function sortTable() {
+        const ascending = sortSelect.value === "0";
+        const rows = Array.from(tableBody.querySelectorAll("tr"))
+            .filter(row => row.style.display !== "none" && !row.classList.contains("no-results"));
+
+        rows.sort((a, b) => {
+            const priceA = parseFloat(a.cells[5].innerText.replace(',', '.')) || 0;
+            const priceB = parseFloat(b.cells[5].innerText.replace(',', '.')) || 0;
+            return ascending ? priceA - priceB : priceB - priceA;
+        });
+
+        rows.forEach(row => tableBody.appendChild(row));
     }
 
-    // Als er geen zichtbare rijen meer zijn, toon de melding
-    if (zichtbaar === 0) {
-        let nieuweRij = document.createElement("tr");
-        nieuweRij.id = "geen-lessen";
-        nieuweRij.innerHTML = `<td colspan="7" style="text-align: center; font-weight: bold; color: red;">Geen lessen gevonden</td>`;
-        tbody.appendChild(nieuweRij);
-    }
-}
-
-// Functie om de tabel te sorteren op prijs
-function SortTable() {
-    let table = document.getElementById("table-leden");
-    let tbody = table.getElementsByTagName("tbody")[0];
-    let rows = Array.from(tbody.getElementsByTagName("tr"));
-    let sortType = document.getElementById("Filter-2").value; 
-
-
-    let echteRijen = rows.filter(row => !row.id || row.id !== "geen-lessen");
-
-    echteRijen.sort((rowA, rowB) => {
-        let prijsA = parseFloat(rowA.getElementsByTagName("td")[5].innerText.replace(',', '.'));
-        let prijsB = parseFloat(rowB.getElementsByTagName("td")[5].innerText.replace(',', '.'));
-
-        return sortType === "0" ? prijsA - prijsB : prijsB - prijsA;
-    });
-
-   
-    tbody.innerHTML = "";
-    echteRijen.forEach(row => tbody.appendChild(row));
-
-    
-    Filter();
-}
+    priceInput.addEventListener("input", filterTable);
+    dateInput.addEventListener("change", filterTable);
+    sortSelect.addEventListener("change", filterTable);
+});

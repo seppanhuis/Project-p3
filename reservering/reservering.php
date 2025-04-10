@@ -86,17 +86,25 @@
                         <th>Datum</th>
                         <th>Tijd</th>
                         <th>Reserveringstatus</th>
+                        <th>Acties</th>
                     </thead>
                     <tbody>
                         <?php foreach($result as $ReserveringInfo) : ?>
                             <tr>
-                              <td><?= $ReserveringInfo->Voornaam ?></td>
-                              <td><?= $ReserveringInfo->Tussenvoegsel ?></td>
-                              <td><?= $ReserveringInfo->Achternaam ?></td>
-                              <td><?= $ReserveringInfo->Nummer ?></td>
-                              <td><?= $ReserveringInfo->Datum ?></td>
-                              <td><?= $ReserveringInfo->Tijd ?></td>
-                              <td><?= $ReserveringInfo->Reserveringstatus ?></td>
+                                <td><?= $ReserveringInfo->Voornaam ?></td>
+                                <td><?= $ReserveringInfo->Tussenvoegsel ?></td>
+                                <td><?= $ReserveringInfo->Achternaam ?></td>
+                                <td><?= $ReserveringInfo->Nummer ?></td>
+                                <td><?= $ReserveringInfo->Datum ?></td>
+                                <td><?= $ReserveringInfo->Tijd ?></td>
+                                <td><?= $ReserveringInfo->Reserveringstatus ?></td>
+                                <td>
+                                    <a href="update.php?id=<?= $ReserveringInfo->Id ?>" class="btn btn-warning btn-sm">Reservering wijzigen</a>
+                                    <a href="delete.php?id=<?= $ReserveringInfo->Id ?>" class="btn btn-danger btn-sm"
+                                       onclick="return confirm('Weet je zeker dat je deze reservering wilt verwijderen?');">
+                                       Reservering verwijderen
+                                    </a>
+                                </td>
                             </tr>
                         <?php endforeach ?>
                     </tbody>

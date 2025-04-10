@@ -39,12 +39,16 @@
          * Het binden van de $_POST- waarden aan de placeholders in de $sql-query
          */
         $statement->bindValue(':Naam', trim($_POST['Naam']), PDO::PARAM_STR);
-        $statement->bindValue(':Datum', trim($_POST['Datum']), PDO::PARAM_INT);
-        $statement->bindValue(':Tijd', trim($_POST['Tijd']), PDO::PARAM_INT);
+        $statement->bindValue(':Datum', trim($_POST['Datum']), PDO::PARAM_STR);
+        $statement->bindValue(':Tijd', trim($_POST['Tijd']), PDO::PARAM_STR);
         $statement->bindValue(':MinAantalPersonen', trim($_POST['MinAantalPersonen']), PDO::PARAM_INT);
         $statement->bindValue(':MaxAantalPersonen', trim($_POST['MaxAantalPersonen']), PDO::PARAM_INT);
         $statement->bindValue(':Beschikbaarheid', trim($_POST['Beschikbaarheid']), PDO::PARAM_STR);
- 
+
+        $date = DateTime::createFromFormat('Y-m-d', $_POST['Datum']);
+  	    $time = DateTime::createFromFormat('H:i', $_POST['Tijd']);
+
+
         /**
          * Voer de query uit.
          */
@@ -101,7 +105,7 @@
  
                 <div class="mb-3">
                     <label for="Datum" class="form-label">Datum</label>
-                    <input name="Datum" type="date" class="form-control" id="Datum"  placeholder="Datum" min="0" max="25500000000000000000000000" value="<?= $_POST['Datum'] ?? ''; ?>">
+                    <input name="Datum" type="date" class="form-control" id="Datum"  placeholder="Datum" value="<?= $_POST['Datum'] ?? ''; ?>">
                 </div>
  
                 <div class="mb-3">
